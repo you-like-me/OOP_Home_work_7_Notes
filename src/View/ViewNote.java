@@ -42,6 +42,16 @@ public class ViewNote {
                         noteController.idPresenceValidation(numId);
                         noteController.updateNote(numId, createANote());
                         break;
+                    case DELETE:
+                        String delId = prompt("Какую записку удалить? Введите номер ID: ");
+                        noteController.idPresenceValidation(delId);
+                        noteController.deleteNote(delId);
+                        break;
+                    case READONE:
+                        String readId = prompt("Какую записку показать? Введите номер ID: ");
+                        Note note1 = noteController.readOneNote(readId);
+                        System.out.println(note1);
+                        break;
                 }
             } catch (Exception e) {
                 System.out.println("Oopsie!\n"+ e.getMessage()); ;

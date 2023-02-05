@@ -39,6 +39,21 @@ public class RepositoryFile implements Repository {
         writeDown(notes);
         return id;
     }
+    public void DeleteNote(String idnumber) {
+        List<Note> notes = getAllNotes();
+        Note target = notes.stream().filter(i -> i.getId().equals(idnumber)).findFirst().get();
+        notes.remove(target);
+        writeDown(notes);
+    }
+
+    @Override
+    public void ReadOne(Note note) {
+        List<Note> notes = getAllNotes();
+        Note target = notes.stream().filter(i -> i.getId().equals(note.getId())).findFirst().get();
+        target.getHeading();
+        target.getText();
+        System.out.println(String.format("Заголовок %d, Текст %d", note.getHeading(), note.getText()));
+    }
 
     @Override
     public void updateNote (Note note) {
