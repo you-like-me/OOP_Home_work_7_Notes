@@ -2,7 +2,6 @@ package Controller;
 
 import Model.Note;
 import Model.Repository;
-import Model.Note;
 
 import java.util.List;
 
@@ -13,8 +12,7 @@ public class NoteController {
         this.repository = repository;
     }
 
-    public void saveNote(Note note) throws Exception {
-//        validateNote(note);
+    public void saveNote(Note note){
         repository.CreateNote(note);
     }
 
@@ -28,7 +26,7 @@ public class NoteController {
 
         throw new Exception("User not found");
     }
-    public Note readOneNote(String idNumber) throws Exception {
+    public Note ReadOne(String idNumber) throws Exception {
         List<Note> notes = repository.getAllNotes();
         for (Note note : notes) {
             if (note.getId().equals(idNumber)) {
@@ -46,24 +44,12 @@ public class NoteController {
     public void updateNote(String idNumber, Note newNote) throws Exception {
         idPresenceValidation(idNumber);
         newNote.setId(idNumber);
-//        validateNoteId(newNote);
         repository.updateNote(newNote);
     }
     public void deleteNote(String idnumber) {
 
         repository.DeleteNote(idnumber);
     }
-
-//    private void validateNote(Note note) throws Exception {
-//        if (note.getHeading().contains(" "))
-//            throw new Exception("User name has unacceptable characters");
-//    }
-
-//    private void validateNoteId (Note note) throws Exception{
-//        if (note.getId().isEmpty())
-//            throw new Exception("User has no id");
-//        validateNote(note);
-//    }
 
     public void idPresenceValidation (String inputId) throws Exception {
         List<Note> notes = repository.getAllNotes();

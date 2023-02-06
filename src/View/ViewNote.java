@@ -49,7 +49,7 @@ public class ViewNote {
                         break;
                     case READONE:
                         String readId = prompt("Какую записку показать? Введите номер ID: ");
-                        Note note1 = noteController.readOneNote(readId);
+                        Note note1 = noteController.ReadOne(readId);
                         System.out.println(note1);
                         break;
                 }
